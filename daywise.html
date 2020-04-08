@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.anychart.com/releases/8.7.1/js/anychart-base.min.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .anychart-credits {
+            display: none;
+        }
+
+        a.button6 {
+            display: inline-block;
+            padding: 0.7em 1.4em;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.15em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+            font-weight: 400;
+            color: #FFFFFF;
+            background-color: #3369ff;
+            box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
+            text-align: center;
+            position: relative;
+        }
+
+        a.button6:active {
+            top: 0.1em;
+        }
+
+        @media all and (max-width:30em) {
+            a.button6 {
+                display: block;
+                margin: 0.4em auto;
+            }
+        }
+    </style>
+    <title>CoViD-19 Tracker</title>
+</head>
+
+<body>
+    <a href="https://vaibhavrajsingh2001.github.io/tracker.io/index.html" class="button6">Click Here for state wise data</a>
+    <div id="container" style="width: 90%; height: 90%;"></div>
+
+
+    <script>
+
+        const requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch("https://api.covid19india.org/data.json", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                const data = JSON.parse(result);
+                const total_data = data.cases_time_series;
+                const daywise = total_data.map(el => [`${el.date}`, Number(el.totalconfirmed)]);
+                console.log(daywise);
+
+                const chart = anychart.line();
+                const series = chart.line(daywise);
+                chart.container("container");
+                chart.draw();
+            })
+            .catch(error => console.log('error', error));
+    </script>
+</body>
+
+</html>
