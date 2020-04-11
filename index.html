@@ -64,10 +64,10 @@
             const result = await response.text();
             const data = JSON.parse(result);
             const state_data = data.statewise;
-            const state_name = state_data.map(el => [`${el.state}`, Number(el.active)]);
+            const state_name = state_data.map(el => [`${el.state}`, Number(el.active-el.deltaconfirmed)]);
             state_name.shift();
             const state_cases = state_data.map(el => el.active);
-            console.log(state_name);
+            console.log(state_data);
 
             let chart = anychart.area();
             let series = chart.area(state_name);

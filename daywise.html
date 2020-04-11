@@ -65,8 +65,9 @@
             const result = await response.text();
             const data = JSON.parse(result);
             const total_data = data.cases_time_series;
-            const daywise = total_data.map(el => [`${el.date}`, Number(el.totalconfirmed)]);
+            const daywise = total_data.map(el => [`${el.date}`, Number(el.totalconfirmed-el.totalrecovered)]);
             console.log(daywise);
+            console.log(total_data);
 
             const chart = anychart.area();
             const series = chart.area(daywise);
