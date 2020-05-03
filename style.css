@@ -14,7 +14,7 @@
  p {
      color: #dbdbdb;
      font-family: 'Roboto',
-     sans-serif;
+         sans-serif;
  }
 
  .anychart-credits {
@@ -50,11 +50,12 @@
  }
 
  @media (max-width:500px) {
-    #container {
-        width: 100%;
-    }
+     #container {
+         width: 100%;
+     }
  }
-/* 
+
+ /* 
  .container {
      padding: 50px;
  } */
