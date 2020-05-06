@@ -9,7 +9,7 @@ async function getData() {
     const result = await response.text();
     const data = JSON.parse(result);
     const total_data = data.cases_time_series;
-    const daywise = total_data.map(el => [`${el.date}`, Number(el.totalconfirmed - el.totalrecovered)]);
+    const daywise = total_data.map(el => [`${el.date}`, Number(el.totalconfirmed)]);
     console.log(daywise);
     console.log(total_data);
 
