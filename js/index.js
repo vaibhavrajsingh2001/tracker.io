@@ -9,7 +9,7 @@ async function getData() {
     const result = await response.text();
     const data = JSON.parse(result);
     const state_data = data.statewise;
-    const state_name = state_data.map(el => [`${el.state}`, Number(el.active)]);
+    const state_name = state_data.map(el => [`${el.state}`, Number(el.confirmed)]);
     state_name.shift();
     console.log(state_data);
 
